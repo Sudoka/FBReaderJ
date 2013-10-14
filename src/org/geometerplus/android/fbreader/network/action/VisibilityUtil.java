@@ -9,10 +9,6 @@ import org.geometerplus.fbreader.network.authentication.NetworkAuthenticationMan
 import org.geometerplus.fbreader.network.tree.*;
 import org.geometerplus.fbreader.network.urlInfo.UrlInfo;
 
-/**
- * Created with IntelliJ IDEA.
- * User: tripodduan
- */
 public abstract class VisibilityUtil {
     private VisibilityUtil(){
         
