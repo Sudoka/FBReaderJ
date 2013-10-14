@@ -36,6 +36,7 @@ public class TopupAction extends Action {
 		super(activity, ActionCode.TOPUP, "topup", -1);
 	}
 
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (tree instanceof TopUpTree) {
@@ -52,6 +53,7 @@ public class TopupAction extends Action {
 			return false;
 		}
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

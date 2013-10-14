@@ -35,7 +35,7 @@ public class OpenInBrowserAction extends CatalogAction {
 	public OpenInBrowserAction(Activity activity) {
 		super(activity, ActionCode.OPEN_IN_BROWSER, "openInBrowser");
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (!super.isVisible(tree)) {
@@ -49,6 +49,7 @@ public class OpenInBrowserAction extends CatalogAction {
 
 		return ((NetworkURLCatalogItem)item).getUrl(UrlInfo.Type.HtmlPage) != null;
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

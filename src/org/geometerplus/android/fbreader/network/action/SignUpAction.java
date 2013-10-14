@@ -33,6 +33,7 @@ public class SignUpAction extends Action {
 		super(activity, ActionCode.SIGNUP, "signUp", -1);
 	}
 
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (!(tree instanceof NetworkCatalogRootTree)) {
@@ -46,6 +47,7 @@ public class SignUpAction extends Action {
 			!mgr.mayBeAuthorised(false) &&
 			Util.isRegistrationSupported(myActivity, link);
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

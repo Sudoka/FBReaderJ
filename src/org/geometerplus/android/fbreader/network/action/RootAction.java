@@ -28,9 +28,10 @@ public abstract class RootAction extends Action {
 	protected RootAction(Activity activity, int code, String resourceKey, int iconId) {
 		super(activity, code, resourceKey, iconId);
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof RootTree;
 	}
+    */
 }

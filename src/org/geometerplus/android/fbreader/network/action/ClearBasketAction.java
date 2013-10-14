@@ -30,10 +30,12 @@ public class ClearBasketAction extends CatalogAction {
 		super(activity, ActionCode.BASKET_CLEAR, "clearBasket");
 	}
 
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof BasketCatalogTree && ((BasketCatalogTree)tree).canBeOpened();
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

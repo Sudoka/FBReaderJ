@@ -36,10 +36,12 @@ public class AddCustomCatalogAction extends Action {
 		super(activity, ActionCode.CUSTOM_CATALOG_ADD, "addCustomCatalog", R.drawable.ic_menu_add);
 	}
 
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof RootTree || tree instanceof AddCustomCatalogItemTree;
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

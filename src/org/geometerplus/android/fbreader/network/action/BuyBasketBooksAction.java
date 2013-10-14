@@ -34,10 +34,12 @@ public class BuyBasketBooksAction extends CatalogAction {
 		super(activity, ActionCode.BASKET_BUY_ALL_BOOKS, "buyAllBooks");
 	}
 
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof BasketCatalogTree && ((BasketCatalogTree)tree).canBeOpened();
 	}
+*/
 
 	@Override
 	public boolean isEnabled(NetworkTree tree) {
