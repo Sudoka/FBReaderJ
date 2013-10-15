@@ -33,11 +33,8 @@ abstract class CatalogAction extends Action {
 		super(activity, code, resourceKey, -1);
 	}
 
-/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof NetworkCatalogTree;
 	}
-*/
-
 }

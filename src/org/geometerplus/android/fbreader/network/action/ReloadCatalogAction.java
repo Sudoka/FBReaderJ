@@ -31,7 +31,7 @@ public class ReloadCatalogAction extends CatalogAction {
 	public ReloadCatalogAction(NetworkLibraryActivity activity) {
 		super(activity, ActionCode.RELOAD_CATALOG, "reload", R.drawable.ic_menu_refresh);
 	}
-/*
+
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (!super.isVisible(tree)) {
@@ -43,7 +43,6 @@ public class ReloadCatalogAction extends CatalogAction {
 		}
 		return ((NetworkURLCatalogItem)item).getUrl(UrlInfo.Type.Catalog) != null;
 	}
-*/
 
 	@Override
 	public boolean isEnabled(NetworkTree tree) {

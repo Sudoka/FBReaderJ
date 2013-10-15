@@ -32,7 +32,7 @@ public class SignOutAction extends Action {
 	public SignOutAction(Activity activity) {
 		super(activity, ActionCode.SIGNOUT, "signOut", -1);
 	}
-/*
+
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (!(tree instanceof NetworkCatalogRootTree)) {
@@ -42,7 +42,6 @@ public class SignOutAction extends Action {
 		final NetworkAuthenticationManager mgr = tree.getLink().authenticationManager();
 		return mgr != null && mgr.mayBeAuthorised(false);
 	}
-*/
 
 	@Override
 	public void run(NetworkTree tree) {

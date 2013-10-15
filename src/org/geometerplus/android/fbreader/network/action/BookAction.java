@@ -30,12 +30,10 @@ abstract class BookAction extends Action {
 		super(activity, code, resourceKey, -1);
 	}
 
-/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof NetworkBookTree;
 	}
-*/
 
 	protected NetworkBookItem getBook(NetworkTree tree) {
 		return ((NetworkBookTree)tree).Book;

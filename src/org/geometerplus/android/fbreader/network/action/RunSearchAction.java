@@ -43,14 +43,13 @@ public class RunSearchAction extends Action {
 		return null;
 	}
 
-	public final boolean myFromContextMenu;
+	private final boolean myFromContextMenu;
 
 	public RunSearchAction(Activity activity, boolean fromContextMenu) {
 		super(activity, ActionCode.SEARCH, "networkSearch", R.drawable.ic_menu_search);
 		myFromContextMenu = fromContextMenu;
 	}
 
-/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (myFromContextMenu) {
@@ -59,7 +58,6 @@ public class RunSearchAction extends Action {
 			return getSearchTree(tree) != null;
 		}
 	}
-*/
 
 	@Override
 	public boolean isEnabled(NetworkTree tree) {

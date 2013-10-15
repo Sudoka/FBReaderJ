@@ -34,14 +34,12 @@ public class EditCustomCatalogAction extends CatalogAction {
 		super(activity, ActionCode.CUSTOM_CATALOG_EDIT, "editCustomCatalog");
 	}
 
-/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return
 			tree instanceof NetworkCatalogRootTree &&
 			tree.getLink() instanceof ICustomNetworkLink;
 	}
-*/
 
 	@Override
 	public void run(NetworkTree tree) {

@@ -37,12 +37,11 @@ public class ManageCatalogsAction extends RootAction {
 	public ManageCatalogsAction(Activity activity) {
 		super(activity, ActionCode.MANAGE_CATALOGS, "manageCatalogs", R.drawable.ic_menu_filter);
 	}
-/*
+
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof RootTree || tree instanceof ManageCatalogsItemTree;
 	}
-*/
 
 	@Override
 	public void run(NetworkTree tree) {

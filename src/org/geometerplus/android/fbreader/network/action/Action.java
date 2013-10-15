@@ -38,11 +38,9 @@ public abstract class Action {
 		IconId = iconId;
 	}
 
-	public boolean isVisible(NetworkTree tree){
-        return VisibilityUtil.visible(this, tree);
-    }
+	public abstract boolean isVisible(NetworkTree tree);
 
-    public boolean isEnabled(NetworkTree tree) {
+	public boolean isEnabled(NetworkTree tree) {
 		return true;
 	}
 

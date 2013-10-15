@@ -36,7 +36,7 @@ public class OpenCatalogAction extends Action {
 	public OpenCatalogAction(Activity activity) {
 		super(activity, ActionCode.OPEN_CATALOG, "openCatalog", -1);
 	}
-/*
+
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (tree instanceof NetworkAuthorTree || tree instanceof NetworkSeriesTree) {
@@ -47,7 +47,6 @@ public class OpenCatalogAction extends Action {
 			return false;
 		}
 	}
-*/
 
 	@Override
 	public void run(NetworkTree tree) {
