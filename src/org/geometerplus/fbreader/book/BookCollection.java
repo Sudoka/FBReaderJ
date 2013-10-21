@@ -59,6 +59,14 @@ public class BookCollection extends AbstractBookCollection {
 		return myBooksByFile.size();
 	}
 
+    /*
+    getBookByFileWithoutUpdateDatabase(bookFile: ZLFile): Book
+            --Finds the Book corresponding to the ZLFile.
+        require
+            bookFile is not null, not unrecognizable, not unreadable and has a corresponding physical file.
+        ensure
+            return is not null
+     */
     public Book getBookByFileWithoutUpdateDatabase(ZLFile bookFile) throws AssertionFailedError {
         //Precondition: bookFile is valid
         Assert.assertTrue(bookFile != null);
@@ -113,7 +121,7 @@ public class BookCollection extends AbstractBookCollection {
                 saveBook(book, false);
             new FileInfoSet(myDatabase, bookFile).save();
             return book;
-        }catch (AssertionError e){
+        }catch (AssertionFailedError e){
             return null;
         }
 	}
