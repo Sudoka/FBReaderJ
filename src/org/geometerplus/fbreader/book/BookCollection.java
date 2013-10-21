@@ -22,6 +22,9 @@ package org.geometerplus.fbreader.book;
 import java.io.File;
 import java.util.*;
 
+import edu.ucsd.cse218.PreconditionViolatedException;
+import junit.framework.Assert;
+import junit.framework.AssertionFailedError;
 import org.geometerplus.zlibrary.core.filesystem.ZLFile;
 import org.geometerplus.zlibrary.core.filesystem.ZLPhysicalFile;
 import org.geometerplus.zlibrary.core.image.ZLImage;
@@ -56,57 +59,63 @@ public class BookCollection extends AbstractBookCollection {
 		return myBooksByFile.size();
 	}
 
+    public Book getBookByFileWithoutUpdateDatabase(ZLFile bookFile) throws AssertionFailedError {
+        //Precondition: bookFile is valid
+        Assert.assertTrue(bookFile != null);
+        //Finds corresponding format plugin
+        final FormatPlugin plugin = PluginCollection.Instance().getPlugin(bookFile);
+        //Unknown plugin or unable to read, return null
+        Assert.assertTrue(plugin != null);
+        try {
+            bookFile = plugin.realBookFile(bookFile);
+        } catch (BookReadingException e) {
+            throw new PreconditionViolatedException("Unable to read file " + bookFile.getLongName());
+        }
+
+        //Find book from table, if exists return the book
+        Book book = myBooksByFile.get(bookFile);
+        if (book != null) {
+            return book;
+        }
+
+        final ZLPhysicalFile physicalFile = bookFile.getPhysicalFile();
+
+        Assert.assertFalse(physicalFile != null && !physicalFile.exists());
+
+        final FileInfoSet fileInfos = new FileInfoSet(myDatabase, bookFile);
+
+        //Find book from database
+        book = myDatabase.loadBookByFile(fileInfos.getId(bookFile), bookFile);
+        if (book != null) {
+            book.loadLists(myDatabase);
+            if(fileInfos.check(physicalFile, physicalFile != bookFile)) {
+                return book;
+            }
+        }
+
+        try {
+            //Create a new Book from bookFile
+            if (book == null) {
+                book = new Book(bookFile);
+            } else {
+                book.readMetaInfo();
+            }
+        } catch (BookReadingException e) {
+            throw new PreconditionViolatedException("Unable to read file " + bookFile.getLongName());
+        }
+        return book;
+    }
+
 	public Book getBookByFile(ZLFile bookFile) {
-		if (bookFile == null) {
-			return null;
-		}
-		final FormatPlugin plugin = PluginCollection.Instance().getPlugin(bookFile);
-		if (plugin == null) {
-			return null;
-		}
-		try {
-			bookFile = plugin.realBookFile(bookFile);
-		} catch (BookReadingException e) {
-			return null;
-		}
-
-		Book book = myBooksByFile.get(bookFile);
-		if (book != null) {
-			return book;
-		}
-
-		final ZLPhysicalFile physicalFile = bookFile.getPhysicalFile();
-		if (physicalFile != null && !physicalFile.exists()) {
-			return null;
-		}
-
-		final FileInfoSet fileInfos = new FileInfoSet(myDatabase, bookFile);
-
-		book = myDatabase.loadBookByFile(fileInfos.getId(bookFile), bookFile);
-		if (book != null) {
-			book.loadLists(myDatabase);
-		}
-
-		if (book != null && fileInfos.check(physicalFile, physicalFile != bookFile)) {
-			saveBook(book, false);
-			// saved
-			addBook(book, false);
-			return book;
-		}
-		fileInfos.save();
-
-		try {
-			if (book == null) {
-				book = new Book(bookFile);
-			} else {
-				book.readMetaInfo();
-			}
-		} catch (BookReadingException e) {
-			return null;
-		}
-
-		saveBook(book, false);
-		return book;
+        try{
+            Book book = getBookByFileWithoutUpdateDatabase(bookFile);
+            if(!myBooksByFile.containsValue(book))
+                saveBook(book, false);
+            new FileInfoSet(myDatabase, bookFile).save();
+            return book;
+        }catch (AssertionError e){
+            return null;
+        }
 	}
 
 	public Book getBookById(long id) {
@@ -115,6 +124,7 @@ public class BookCollection extends AbstractBookCollection {
 			return book;
 		}
 
+        //Find from database
 		book = myDatabase.loadBook(id);
 		if (book == null) {
 			return null;
