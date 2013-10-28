@@ -26,7 +26,7 @@ import org.geometerplus.zlibrary.core.util.ZLArrayUtils;
 // there is no remove() in this implementation
 // put with the same key does not remove old entry
 
-public final class ZLStringMap {
+public class ZLStringMap {
 	private String[] myKeys;
 	private String[] myValues;
 	private int mySize;
