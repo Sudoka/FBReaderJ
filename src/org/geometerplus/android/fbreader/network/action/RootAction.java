@@ -27,10 +27,17 @@ import org.geometerplus.fbreader.network.tree.RootTree;
 public abstract class RootAction extends Action {
 	protected RootAction(Activity activity, int code, String resourceKey, int iconId) {
 		super(activity, code, resourceKey, iconId);
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(RootTree tree) {
+                return true;
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof RootTree;
 	}
+*/
 }

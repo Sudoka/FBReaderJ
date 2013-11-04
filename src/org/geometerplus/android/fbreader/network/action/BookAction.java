@@ -28,12 +28,18 @@ import org.geometerplus.fbreader.network.tree.NetworkBookTree;
 abstract class BookAction extends Action {
 	protected BookAction(Activity activity, int code, String resourceKey) {
 		super(activity, code, resourceKey, -1);
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(NetworkBookTree tree) {
+                return true;
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof NetworkBookTree;
-	}
+	}*/
 
 	protected NetworkBookItem getBook(NetworkTree tree) {
 		return ((NetworkBookTree)tree).Book;

@@ -19,10 +19,15 @@
 
 package org.geometerplus.fbreader.network.tree;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.fbreader.tree.FBTree;
 import org.geometerplus.fbreader.network.*;
 
 public class NetworkCatalogRootTree extends NetworkCatalogTree {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
 	public NetworkCatalogRootTree(RootTree parent, INetworkLink link, int position) {
 		super(parent, link, (NetworkCatalogItem)link.libraryItem(), position);
 	}

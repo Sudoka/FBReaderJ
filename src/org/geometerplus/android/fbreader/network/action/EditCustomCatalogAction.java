@@ -32,14 +32,21 @@ import org.geometerplus.android.fbreader.network.AddCustomCatalogActivity;
 public class EditCustomCatalogAction extends CatalogAction {
 	public EditCustomCatalogAction(Activity activity) {
 		super(activity, ActionCode.CUSTOM_CATALOG_EDIT, "editCustomCatalog");
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(NetworkCatalogRootTree tree) {
+                return tree.getLink() instanceof ICustomNetworkLink;
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return
 			tree instanceof NetworkCatalogRootTree &&
 			tree.getLink() instanceof ICustomNetworkLink;
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

@@ -21,6 +21,7 @@ package org.geometerplus.fbreader.network.tree;
 
 import java.util.*;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.zlibrary.core.image.ZLImage;
 import org.geometerplus.zlibrary.core.util.ZLBoolean3;
 
@@ -29,6 +30,10 @@ import org.geometerplus.fbreader.network.*;
 import org.geometerplus.fbreader.network.urlInfo.UrlInfo;
 
 public class NetworkCatalogTree extends NetworkTree {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
 	private final INetworkLink myLink;
 
 	public final NetworkCatalogItem Item;

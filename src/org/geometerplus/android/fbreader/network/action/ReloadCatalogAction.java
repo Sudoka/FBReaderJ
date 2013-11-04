@@ -30,8 +30,14 @@ import org.geometerplus.android.fbreader.network.NetworkLibraryActivity;
 public class ReloadCatalogAction extends CatalogAction {
 	public ReloadCatalogAction(NetworkLibraryActivity activity) {
 		super(activity, ActionCode.RELOAD_CATALOG, "reload", R.drawable.ic_menu_refresh);
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(NetworkCatalogTree tree) {
+                return tree.Item instanceof NetworkURLCatalogItem && tree.Item.getUrl(UrlInfo.Type.Catalog) != null;
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (!super.isVisible(tree)) {
@@ -43,6 +49,7 @@ public class ReloadCatalogAction extends CatalogAction {
 		}
 		return ((NetworkURLCatalogItem)item).getUrl(UrlInfo.Type.Catalog) != null;
 	}
+*/
 
 	@Override
 	public boolean isEnabled(NetworkTree tree) {

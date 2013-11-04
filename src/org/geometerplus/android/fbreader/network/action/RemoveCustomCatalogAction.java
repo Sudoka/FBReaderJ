@@ -29,14 +29,21 @@ import org.geometerplus.fbreader.network.tree.NetworkCatalogRootTree;
 public class RemoveCustomCatalogAction extends CatalogAction {
 	public RemoveCustomCatalogAction(Activity activity) {
 		super(activity, ActionCode.CUSTOM_CATALOG_REMOVE, "removeCustomCatalog");
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(NetworkCatalogRootTree tree) {
+                return tree.getLink() instanceof ICustomNetworkLink;
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return
 			tree instanceof NetworkCatalogRootTree &&
 			tree.getLink() instanceof ICustomNetworkLink;
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

@@ -19,11 +19,16 @@
 
 package org.geometerplus.fbreader.network.tree;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.zlibrary.core.image.ZLImage;
 
 import org.geometerplus.fbreader.network.*;
 
 public class NetworkBookTree extends NetworkTree {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
 	public final NetworkBookItem Book;
 
 	private final boolean myShowAuthors;

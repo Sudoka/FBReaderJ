@@ -28,12 +28,19 @@ import org.geometerplus.fbreader.network.tree.BasketCatalogTree;
 public class ClearBasketAction extends CatalogAction {
 	public ClearBasketAction(Activity activity) {
 		super(activity, ActionCode.BASKET_CLEAR, "clearBasket");
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(BasketCatalogTree tree) {
+                return tree.canBeOpened();
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
-		return tree instanceof BasketCatalogTree && ((BasketCatalogTree)tree).canBeOpened();
+        return tree instanceof BasketCatalogTree && ((BasketCatalogTree)tree).canBeOpened();
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

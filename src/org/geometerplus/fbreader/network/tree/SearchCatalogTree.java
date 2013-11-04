@@ -19,12 +19,17 @@
 
 package org.geometerplus.fbreader.network.tree;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.zlibrary.core.util.MimeType;
 
 import org.geometerplus.fbreader.network.NetworkLibrary;
 import org.geometerplus.fbreader.network.SearchItem;
 
 public class SearchCatalogTree extends NetworkCatalogTree {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
 	public SearchCatalogTree(RootTree parent, SearchItem item, int position) {
 		super(parent, null, item, position);
 		item.setPattern(null);

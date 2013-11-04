@@ -35,8 +35,24 @@ import org.geometerplus.android.util.PackageUtil;
 public class OpenCatalogAction extends Action {
 	public OpenCatalogAction(Activity activity) {
 		super(activity, ActionCode.OPEN_CATALOG, "openCatalog", -1);
-	}
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(NetworkAuthorTree tree) {
+                return true;
+            }
 
+            @Override
+            public boolean visible(NetworkSeriesTree tree) {
+                return true;
+            }
+
+            @Override
+            public boolean visible(NetworkCatalogTree tree) {
+                return tree.canBeOpened();
+            }
+        };
+	}
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (tree instanceof NetworkAuthorTree || tree instanceof NetworkSeriesTree) {
@@ -46,7 +62,7 @@ public class OpenCatalogAction extends Action {
 		} else {
 			return false;
 		}
-	}
+	}*/
 
 	@Override
 	public void run(NetworkTree tree) {

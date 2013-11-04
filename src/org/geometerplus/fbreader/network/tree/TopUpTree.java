@@ -19,6 +19,7 @@
 
 package org.geometerplus.fbreader.network.tree;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.zlibrary.core.image.ZLImage;
 import org.geometerplus.zlibrary.core.network.ZLNetworkException;
 import org.geometerplus.zlibrary.core.money.Money;
@@ -28,6 +29,10 @@ import org.geometerplus.fbreader.network.NetworkTree;
 import org.geometerplus.fbreader.network.authentication.NetworkAuthenticationManager;
 
 public class TopUpTree extends NetworkTree {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
 	public final TopUpItem Item;
 
 	TopUpTree(NetworkCatalogTree parentTree, TopUpItem item) {

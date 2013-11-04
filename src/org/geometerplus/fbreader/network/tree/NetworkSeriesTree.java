@@ -21,6 +21,7 @@ package org.geometerplus.fbreader.network.tree;
 
 import java.util.*;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.zlibrary.core.image.ZLImage;
 
 import org.geometerplus.fbreader.tree.FBTree;
@@ -28,6 +29,10 @@ import org.geometerplus.fbreader.network.*;
 
 
 public class NetworkSeriesTree extends NetworkTree {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
 
 	public final String SeriesTitle;
 

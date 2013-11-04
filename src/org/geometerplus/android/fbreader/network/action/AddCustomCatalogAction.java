@@ -29,17 +29,29 @@ import org.geometerplus.fbreader.network.tree.AddCustomCatalogItemTree;
 
 import org.geometerplus.android.fbreader.network.AddCatalogMenuActivity;
 
+import org.geometerplus.fbreader.network.tree.SearchCatalogTree;
 import org.geometerplus.zlibrary.ui.android.R;
 
 public class AddCustomCatalogAction extends Action {
 	public AddCustomCatalogAction(Activity activity) {
 		super(activity, ActionCode.CUSTOM_CATALOG_ADD, "addCustomCatalog", R.drawable.ic_menu_add);
-	}
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(RootTree tree) {
+                return true;
+            }
 
+            @Override
+            public boolean visible(AddCustomCatalogItemTree tree) {
+                return true;
+            }
+        };
+	}
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof RootTree || tree instanceof AddCustomCatalogItemTree;
-	}
+	}*/
 
 	@Override
 	public void run(NetworkTree tree) {

@@ -23,6 +23,7 @@ import android.app.Activity;
 
 import org.geometerplus.fbreader.network.NetworkTree;
 import org.geometerplus.fbreader.network.NetworkLibrary;
+import org.geometerplus.fbreader.network.tree.*;
 
 public abstract class Action {
 	public final int Code;
@@ -38,7 +39,9 @@ public abstract class Action {
 		IconId = iconId;
 	}
 
-	public abstract boolean isVisible(NetworkTree tree);
+	public boolean isVisible(NetworkTree tree){
+        return tree.isVisible(visitor);
+    }
 
 	public boolean isEnabled(NetworkTree tree) {
 		return true;
@@ -55,4 +58,45 @@ public abstract class Action {
 		return
 			NetworkLibrary.resource().getResource("menu").getResource(myResourceKey).getValue();
 	}
+
+    protected NetworkTreeVisibilityVisitor visitor;
+
+    public abstract class NetworkTreeVisibilityVisitor{
+        public boolean visible(NetworkTree tree){
+            return false;
+        }
+        public boolean visible(AddCustomCatalogItemTree tree){
+            return false;
+        }
+        public boolean visible(BasketCatalogTree tree){
+            return false;
+        }
+        public boolean visible(ManageCatalogsItemTree tree){
+            return false;
+        }
+        public boolean visible(NetworkAuthorTree tree){
+            return false;
+        }
+        public boolean visible(NetworkBookTree tree){
+            return false;
+        }
+        public boolean visible(NetworkCatalogRootTree tree){
+            return false;
+        }
+        public boolean visible(NetworkCatalogTree tree){
+            return false;
+        }
+        public boolean visible(NetworkSeriesTree tree){
+            return false;
+        }
+        public boolean visible(RootTree tree){
+            return false;
+        }
+        public boolean visible(SearchCatalogTree tree){
+            return false;
+        }
+        public boolean visible(TopUpTree tree){
+            return false;
+        }
+    }
 }

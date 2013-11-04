@@ -32,12 +32,18 @@ import org.geometerplus.android.fbreader.network.BuyBooksActivity;
 public class BuyBasketBooksAction extends CatalogAction {
 	public BuyBasketBooksAction(Activity activity) {
 		super(activity, ActionCode.BASKET_BUY_ALL_BOOKS, "buyAllBooks");
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(BasketCatalogTree tree) {
+                return tree.canBeOpened();
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof BasketCatalogTree && ((BasketCatalogTree)tree).canBeOpened();
-	}
+	}*/
 
 	@Override
 	public boolean isEnabled(NetworkTree tree) {

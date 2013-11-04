@@ -36,12 +36,23 @@ import org.geometerplus.android.fbreader.network.NetworkLibraryActivity;
 public class ManageCatalogsAction extends RootAction {
 	public ManageCatalogsAction(Activity activity) {
 		super(activity, ActionCode.MANAGE_CATALOGS, "manageCatalogs", R.drawable.ic_menu_filter);
-	}
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(RootTree tree) {
+                return true;
+            }
 
+            @Override
+            public boolean visible(ManageCatalogsItemTree tree){
+                return true;
+            }
+        };
+	}
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		return tree instanceof RootTree || tree instanceof ManageCatalogsItemTree;
-	}
+	}*/
 
 	@Override
 	public void run(NetworkTree tree) {

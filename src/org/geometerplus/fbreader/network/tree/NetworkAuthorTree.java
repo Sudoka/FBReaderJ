@@ -21,11 +21,16 @@ package org.geometerplus.fbreader.network.tree;
 
 import java.util.*;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.fbreader.tree.FBTree;
 import org.geometerplus.fbreader.network.*;
 
 
 public class NetworkAuthorTree extends NetworkTree {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
 
 	public final NetworkBookItem.AuthorData Author;
 

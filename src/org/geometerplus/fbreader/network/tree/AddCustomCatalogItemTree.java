@@ -19,10 +19,16 @@
 
 package org.geometerplus.fbreader.network.tree;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.fbreader.network.*;
 
 public class AddCustomCatalogItemTree extends NetworkTree {
-	public AddCustomCatalogItemTree(NetworkTree parent) {
+    @Override
+    public boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor) {
+        return visitor.visible(this);
+    }
+
+    public AddCustomCatalogItemTree(NetworkTree parent) {
 		super(parent);
 	}
 

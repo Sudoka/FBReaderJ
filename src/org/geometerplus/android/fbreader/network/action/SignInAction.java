@@ -30,8 +30,15 @@ import org.geometerplus.android.fbreader.network.Util;
 public class SignInAction extends Action {
 	public SignInAction(Activity activity) {
 		super(activity, ActionCode.SIGNIN, "signIn", -1);
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(NetworkCatalogRootTree tree) {
+                final NetworkAuthenticationManager mgr = tree.getLink().authenticationManager();
+                return mgr != null && !mgr.mayBeAuthorised(false);
+            }
+        };
 	}
-
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (!(tree instanceof NetworkCatalogRootTree)) {
@@ -41,6 +48,7 @@ public class SignInAction extends Action {
 		final NetworkAuthenticationManager mgr = tree.getLink().authenticationManager();
 		return mgr != null && !mgr.mayBeAuthorised(false);
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {

@@ -21,12 +21,15 @@ package org.geometerplus.fbreader.network;
 
 import java.util.*;
 
+import org.geometerplus.android.fbreader.network.action.Action;
 import org.geometerplus.zlibrary.core.image.ZLImage;
 import org.geometerplus.zlibrary.core.util.MimeType;
 
 import org.geometerplus.fbreader.tree.FBTree;
 
 public abstract class NetworkTree extends FBTree {
+    public abstract boolean isVisible(Action.NetworkTreeVisibilityVisitor visitor);
+
 	protected NetworkTree() {
 		super();
 	}

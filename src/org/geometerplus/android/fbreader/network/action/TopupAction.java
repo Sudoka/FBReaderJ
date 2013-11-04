@@ -21,6 +21,7 @@ package org.geometerplus.android.fbreader.network.action;
 
 import android.app.Activity;
 
+import org.geometerplus.fbreader.network.tree.NetworkCatalogTree;
 import org.geometerplus.zlibrary.core.money.Money;
 
 import org.geometerplus.fbreader.network.INetworkLink;
@@ -34,8 +35,21 @@ import org.geometerplus.android.fbreader.network.TopupMenuActivity;
 public class TopupAction extends Action {
 	public TopupAction(Activity activity) {
 		super(activity, ActionCode.TOPUP, "topup", -1);
-	}
+        visitor = new NetworkTreeVisibilityVisitor() {
+            @Override
+            public boolean visible(TopUpTree tree) {
+                return true;
+            }
 
+            @Override
+            public boolean visible(NetworkCatalogTree tree) {
+                final INetworkLink link = tree.getLink();
+                final NetworkAuthenticationManager mgr = link.authenticationManager();
+                return mgr != null && mgr.mayBeAuthorised(false) && mgr.currentAccount() != null && TopupMenuActivity.isTopupSupported(link);
+            }
+        };
+	}
+/*
 	@Override
 	public boolean isVisible(NetworkTree tree) {
 		if (tree instanceof TopUpTree) {
@@ -52,6 +66,7 @@ public class TopupAction extends Action {
 			return false;
 		}
 	}
+*/
 
 	@Override
 	public void run(NetworkTree tree) {
